@@ -52,3 +52,8 @@ addopts = [
     "--import-mode=importlib",
 ]
 pythonpath = "src"
+
+[dependency-groups]
+dev = [
+    "huggingface-hub[cli]>=0.34.4",
+]

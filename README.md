@@ -53,3 +53,16 @@ Week 1 is complete. Week 2 is in progress.
 | 3.7            | Long Context                                                 | 🚧    | 🚧   | 🚧  |
 
 Other topics not covered: quantized/compressed kv cache, prefix/prompt cache; sampling, fine tuning; smaller kernels (softmax, silu, etc)
+
+
+## Notes
+
+To activate venv run:
+```
+eval $(pdm venv activate)
+````
+This has been aliased with:
+
+```
+pdm shell
+```

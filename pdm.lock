@@ -2,10 +2,10 @@
 # It is not intended for manual editing.
 
 [metadata]
-groups = ["default"]
+groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:5daed9b471ae8d795d175b6732b822213acc091f3b969e745cb5a63a69ef87ac"
+content_hash = "sha256:742efc46ee42ed9e189c5d43376dd87909373222dd0648f2efc3ced5755206dd"
 
 [[metadata.targets]]
 requires_python = ">=3.10,<3.13"
@@ -192,7 +192,7 @@ name = "certifi"
 version = "2025.4.26"
 requires_python = ">=3.6"
 summary = "Python package for providing Mozilla's CA Bundle."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "certifi-2025.4.26-py3-none-any.whl", hash = "sha256:30350364dfe371162649852c63336a15c70c6510c2ad5015b21c2345311805f3"},
     {file = "certifi-2025.4.26.tar.gz", hash = "sha256:0a816057ea3cdefcef70270d2c515e4506bbc954f417fa5ade2021213bb8f0c6"},
@@ -203,7 +203,7 @@ name = "charset-normalizer"
 version = "3.4.1"
 requires_python = ">=3.7"
 summary = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "charset_normalizer-3.4.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:91b36a978b5ae0ee86c394f5a54d6ef44db1de0815eb43de826d41d21e4af3de"},
     {file = "charset_normalizer-3.4.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:7461baadb4dc00fd9e0acbe254e3d7d2112e7f92ced2adc96e54ef6501c5f176"},
@@ -279,7 +279,7 @@ name = "colorama"
 version = "0.4.6"
 requires_python = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 summary = "Cross-platform colored terminal text."
-groups = ["default"]
+groups = ["default", "dev"]
 marker = "sys_platform == \"win32\" or platform_system == \"Windows\""
 files = [
     {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
@@ -341,7 +341,7 @@ name = "filelock"
 version = "3.18.0"
 requires_python = ">=3.9"
 summary = "A platform independent file lock."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "filelock-3.18.0-py3-none-any.whl", hash = "sha256:c401f4f8377c4464e6db25fff06205fd89bdd83b65eb0488ed1b160f780e21de"},
     {file = "filelock-3.18.0.tar.gz", hash = "sha256:adbc88eabb99d2fec8c9c1b229b171f18afa655400173ddc653d5d01501fb9f2"},
@@ -465,7 +465,7 @@ name = "fsspec"
 version = "2024.12.0"
 requires_python = ">=3.8"
 summary = "File-system specification"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "fsspec-2024.12.0-py3-none-any.whl", hash = "sha256:b520aed47ad9804237ff878b504267a3b0b441e97508bd6d2d8774e3db85cee2"},
     {file = "fsspec-2024.12.0.tar.gz", hash = "sha256:670700c977ed2fb51e0d9f9253177ed20cbde4a3e5c0283cc5385b5870c8533f"},
@@ -522,14 +522,33 @@ files = [
 ]
 
 [[package]]
+name = "hf-xet"
+version = "1.1.9"
+requires_python = ">=3.8"
+summary = "Fast transfer of large files with the Hugging Face Hub."
+groups = ["default", "dev"]
+marker = "platform_machine == \"x86_64\" or platform_machine == \"amd64\" or platform_machine == \"arm64\" or platform_machine == \"aarch64\""
+files = [
+    {file = "hf_xet-1.1.9-cp37-abi3-macosx_10_12_x86_64.whl", hash = "sha256:a3b6215f88638dd7a6ff82cb4e738dcbf3d863bf667997c093a3c990337d1160"},
+    {file = "hf_xet-1.1.9-cp37-abi3-macosx_11_0_arm64.whl", hash = "sha256:9b486de7a64a66f9a172f4b3e0dfe79c9f0a93257c501296a2521a13495a698a"},
+    {file = "hf_xet-1.1.9-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a4c5a840c2c4e6ec875ed13703a60e3523bc7f48031dfd750923b2a4d1a5fc3c"},
+    {file = "hf_xet-1.1.9-cp37-abi3-manylinux_2_28_aarch64.whl", hash = "sha256:96a6139c9e44dad1c52c52520db0fffe948f6bce487cfb9d69c125f254bb3790"},
+    {file = "hf_xet-1.1.9-cp37-abi3-musllinux_1_2_aarch64.whl", hash = "sha256:ad1022e9a998e784c97b2173965d07fe33ee26e4594770b7785a8cc8f922cd95"},
+    {file = "hf_xet-1.1.9-cp37-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:86754c2d6d5afb11b0a435e6e18911a4199262fe77553f8c50d75e21242193ea"},
+    {file = "hf_xet-1.1.9-cp37-abi3-win_amd64.whl", hash = "sha256:5aad3933de6b725d61d51034e04174ed1dce7a57c63d530df0014dea15a40127"},
+    {file = "hf_xet-1.1.9.tar.gz", hash = "sha256:c99073ce404462e909f1d5839b2d14a3827b8fe75ed8aed551ba6609c026c803"},
+]
+
+[[package]]
 name = "huggingface-hub"
-version = "0.30.2"
+version = "0.34.4"
 requires_python = ">=3.8.0"
 summary = "Client library to download and publish models, datasets and other repos on the huggingface.co hub"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "filelock",
     "fsspec>=2023.5.0",
+    "hf-xet<2.0.0,>=1.1.3; platform_machine == \"x86_64\" or platform_machine == \"amd64\" or platform_machine == \"arm64\" or platform_machine == \"aarch64\"",
     "packaging>=20.9",
     "pyyaml>=5.1",
     "requests",
@@ -537,24 +556,40 @@ dependencies = [
     "typing-extensions>=3.7.4.3",
 ]
 files = [
-    {file = "huggingface_hub-0.30.2-py3-none-any.whl", hash = "sha256:68ff05969927058cfa41df4f2155d4bb48f5f54f719dd0390103eefa9b191e28"},
-    {file = "huggingface_hub-0.30.2.tar.gz", hash = "sha256:9a7897c5b6fd9dad3168a794a8998d6378210f5b9688d0dfc180b1a228dc2466"},
+    {file = "huggingface_hub-0.34.4-py3-none-any.whl", hash = "sha256:9b365d781739c93ff90c359844221beef048403f1bc1f1c123c191257c3c890a"},
+    {file = "huggingface_hub-0.34.4.tar.gz", hash = "sha256:a4228daa6fb001be3f4f4bdaf9a0db00e1739235702848df00885c9b5742c85c"},
 ]
 
 [[package]]
 name = "huggingface-hub"
-version = "0.30.2"
+version = "0.34.4"
+extras = ["cli"]
+requires_python = ">=3.8.0"
+summary = "Client library to download and publish models, datasets and other repos on the huggingface.co hub"
+groups = ["dev"]
+dependencies = [
+    "InquirerPy==0.3.4",
+    "huggingface-hub==0.34.4",
+]
+files = [
+    {file = "huggingface_hub-0.34.4-py3-none-any.whl", hash = "sha256:9b365d781739c93ff90c359844221beef048403f1bc1f1c123c191257c3c890a"},
+    {file = "huggingface_hub-0.34.4.tar.gz", hash = "sha256:a4228daa6fb001be3f4f4bdaf9a0db00e1739235702848df00885c9b5742c85c"},
+]
+
+[[package]]
+name = "huggingface-hub"
+version = "0.34.4"
 extras = ["hf_transfer"]
 requires_python = ">=3.8.0"
 summary = "Client library to download and publish models, datasets and other repos on the huggingface.co hub"
 groups = ["default"]
 dependencies = [
     "hf-transfer>=0.1.4",
-    "huggingface-hub==0.30.2",
+    "huggingface-hub==0.34.4",
 ]
 files = [
-    {file = "huggingface_hub-0.30.2-py3-none-any.whl", hash = "sha256:68ff05969927058cfa41df4f2155d4bb48f5f54f719dd0390103eefa9b191e28"},
-    {file = "huggingface_hub-0.30.2.tar.gz", hash = "sha256:9a7897c5b6fd9dad3168a794a8998d6378210f5b9688d0dfc180b1a228dc2466"},
+    {file = "huggingface_hub-0.34.4-py3-none-any.whl", hash = "sha256:9b365d781739c93ff90c359844221beef048403f1bc1f1c123c191257c3c890a"},
+    {file = "huggingface_hub-0.34.4.tar.gz", hash = "sha256:a4228daa6fb001be3f4f4bdaf9a0db00e1739235702848df00885c9b5742c85c"},
 ]
 
 [[package]]
@@ -562,7 +597,7 @@ name = "idna"
 version = "3.10"
 requires_python = ">=3.6"
 summary = "Internationalized Domain Names in Applications (IDNA)"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "idna-3.10-py3-none-any.whl", hash = "sha256:946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3"},
     {file = "idna-3.10.tar.gz", hash = "sha256:12f65c9b470abda6dc35cf8e63cc574b1c52b11df2c86030af0ac09b01b13ea9"},
@@ -577,6 +612,21 @@ groups = ["default"]
 files = [
     {file = "iniconfig-2.1.0-py3-none-any.whl", hash = "sha256:9deba5723312380e77435581c6bf4935c94cbfab9b1ed33ef8d238ea168eb760"},
     {file = "iniconfig-2.1.0.tar.gz", hash = "sha256:3abbd2e30b36733fee78f9c7f7308f2d0050e88f0087fd25c2645f63c773e1c7"},
+]
+
+[[package]]
+name = "inquirerpy"
+version = "0.3.4"
+requires_python = ">=3.7,<4.0"
+summary = "Python port of Inquirer.js (A collection of common interactive command-line user interfaces)"
+groups = ["dev"]
+dependencies = [
+    "pfzy<0.4.0,>=0.3.1",
+    "prompt-toolkit<4.0.0,>=3.0.1",
+]
+files = [
+    {file = "InquirerPy-0.3.4-py3-none-any.whl", hash = "sha256:c65fdfbac1fa00e3ee4fb10679f4d3ed7a012abf4833910e63c295827fe2a7d4"},
+    {file = "InquirerPy-0.3.4.tar.gz", hash = "sha256:89d2ada0111f337483cb41ae31073108b2ec1e618a49d7110b0d7ade89fc197e"},
 ]
 
 [[package]]
@@ -1277,7 +1327,7 @@ name = "packaging"
 version = "25.0"
 requires_python = ">=3.8"
 summary = "Core utilities for Python packages"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "packaging-25.0-py3-none-any.whl", hash = "sha256:29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484"},
     {file = "packaging-25.0.tar.gz", hash = "sha256:d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f"},
@@ -1340,6 +1390,17 @@ files = [
     {file = "pandas-2.2.3-cp39-cp39-musllinux_1_2_x86_64.whl", hash = "sha256:7eee9e7cea6adf3e3d24e304ac6b8300646e2a5d1cd3a3c2abed9101b0846761"},
     {file = "pandas-2.2.3-cp39-cp39-win_amd64.whl", hash = "sha256:4850ba03528b6dd51d6c5d273c46f183f39a9baf3f0143e566b89450965b105e"},
     {file = "pandas-2.2.3.tar.gz", hash = "sha256:4f18ba62b61d7e192368b84517265a99b4d7ee8912f8708660fb4a366cc82667"},
+]
+
+[[package]]
+name = "pfzy"
+version = "0.3.4"
+requires_python = ">=3.7,<4.0"
+summary = "Python port of the fzy fuzzy string matching algorithm"
+groups = ["dev"]
+files = [
+    {file = "pfzy-0.3.4-py3-none-any.whl", hash = "sha256:5f50d5b2b3207fa72e7ec0ef08372ef652685470974a107d0d4999fc5a903a96"},
+    {file = "pfzy-0.3.4.tar.gz", hash = "sha256:717ea765dd10b63618e7298b2d98efd819e0b30cd5905c9707223dceeb94b3f1"},
 ]
 
 [[package]]
@@ -1441,6 +1502,20 @@ groups = ["default"]
 files = [
     {file = "pluggy-1.5.0-py3-none-any.whl", hash = "sha256:44e1ad92c8ca002de6377e165f3e0f1be63266ab4d554740532335b9d75ea669"},
     {file = "pluggy-1.5.0.tar.gz", hash = "sha256:2cffa88e94fdc978c4c574f15f9e59b7f4201d439195c3715ca9e2486f1d0cf1"},
+]
+
+[[package]]
+name = "prompt-toolkit"
+version = "3.0.52"
+requires_python = ">=3.8"
+summary = "Library for building powerful interactive command lines in Python"
+groups = ["dev"]
+dependencies = [
+    "wcwidth",
+]
+files = [
+    {file = "prompt_toolkit-3.0.52-py3-none-any.whl", hash = "sha256:9aac639a3bbd33284347de5ad8d68ecc044b91a762dc39b7c21095fcd6a19955"},
+    {file = "prompt_toolkit-3.0.52.tar.gz", hash = "sha256:28cde192929c8e7321de85de1ddbe736f1375148b02f2e17edd840042b1be855"},
 ]
 
 [[package]]
@@ -1753,7 +1828,7 @@ name = "pyyaml"
 version = "6.0.2"
 requires_python = ">=3.8"
 summary = "YAML parser and emitter for Python"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "PyYAML-6.0.2-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:0a9a2848a5b7feac301353437eb7d5957887edbf81d56e903999a75a3d743086"},
     {file = "PyYAML-6.0.2-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:29717114e51c84ddfba879543fb232a6ed60086602313ca38cce623c1d62cfbf"},
@@ -1895,7 +1970,7 @@ name = "requests"
 version = "2.32.3"
 requires_python = ">=3.8"
 summary = "Python HTTP for Humans."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "certifi>=2017.4.17",
     "charset-normalizer<4,>=2",
@@ -2249,7 +2324,7 @@ name = "tqdm"
 version = "4.67.1"
 requires_python = ">=3.7"
 summary = "Fast, Extensible Progress Meter"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "colorama; platform_system == \"Windows\"",
 ]
@@ -2301,7 +2376,7 @@ name = "typing-extensions"
 version = "4.13.2"
 requires_python = ">=3.8"
 summary = "Backported and Experimental Type Hints for Python 3.8+"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "typing_extensions-4.13.2-py3-none-any.whl", hash = "sha256:a439e7c04b49fec3e5d3e2beaa21755cadbbdc391694e28ccdd36ca4a1408f8c"},
     {file = "typing_extensions-4.13.2.tar.gz", hash = "sha256:e6c81219bd689f51865d9e372991c540bda33a0379d5573cddb9a3a23f7caaef"},
@@ -2323,10 +2398,23 @@ name = "urllib3"
 version = "2.4.0"
 requires_python = ">=3.9"
 summary = "HTTP library with thread-safe connection pooling, file post, and more."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "urllib3-2.4.0-py3-none-any.whl", hash = "sha256:4e16665048960a0900c702d4a66415956a584919c03361cac9f1df5c5dd7e813"},
     {file = "urllib3-2.4.0.tar.gz", hash = "sha256:414bc6535b787febd7567804cc015fee39daab8ad86268f1310a9250697de466"},
+]
+
+[[package]]
+name = "wcwidth"
+version = "0.2.13"
+summary = "Measures the displayed width of unicode strings in a terminal"
+groups = ["dev"]
+dependencies = [
+    "backports-functools-lru-cache>=1.2.1; python_version < \"3.2\"",
+]
+files = [
+    {file = "wcwidth-0.2.13-py2.py3-none-any.whl", hash = "sha256:3da69048e4540d84af32131829ff948f1e022c1c6bdb8d6102117aac784f6859"},
+    {file = "wcwidth-0.2.13.tar.gz", hash = "sha256:72ea0c06399eb286d978fdedb6923a9eb47e1c486ce63e9b4e64fc18303972b5"},
 ]
 
 [[package]]

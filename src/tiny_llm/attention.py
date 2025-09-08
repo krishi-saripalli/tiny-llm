@@ -27,8 +27,8 @@ def scaled_dot_product_attention_simple(
     if mask is not None:
         dot_prods += mask
     
-    probs = mx.softmax(dot_prods,axis=-1) # (.., Lq) reduction along keys
-    attn = probs @ value # (.., D)
+    probs = mx.softmax(dot_prods,axis=-1) # (..Lq, Lk) we're normalizing along the key dimension 
+    attn = probs @ value # (.., Lq, D)
     
     return attn
 
@@ -38,13 +38,24 @@ class SimpleMultiHeadAttention:
         self,
         hidden_size: int,
         num_heads: int,
-        wq: mx.array,
-        wk: mx.array,
-        wv: mx.array,
-        wo: mx.array,
+        wq: mx.array, # (H*D, E)
+        wk: mx.array,  # (H*D, E)
+        wv: mx.array,  # (H*D, E)
+        wo: mx.array,  # (E, H*D)
     ):
-        pass
+        self.hidden_size = hidden_size
+        self.num_heads = num_heads
+        self.head_dim = self.hidden_size // self.num_heads
+        self.wq = wq
+        self.wk = wk
+        self.wv = wv
+        self.wo = wo
 
+    """
+    query: (N,L,E)
+    key: (N,L,E)
+    value: (N,L,E)
+    """
     def __call__(
         self,
         query: mx.array,
@@ -52,7 +63,29 @@ class SimpleMultiHeadAttention:
         value: mx.array,
         mask: mx.array | None = None,
     ) -> mx.array:
-        pass
+
+        # D is head dimension, a chunk of the total hidden dimension E
+        
+
+        # Apply individual projections to achieve (N, L, H*D)
+        q_proj = linear(query,self.wq)
+        k_proj = linear(key,self.wk)
+        v_proj = linear(value,self.wv)
+
+        # Reshape so that we get (N, H, L, D)
+        q_proj = q_proj.reshape(*q_proj.shape[:-1],self.num_heads,self.head_dim).swapaxes(-3,-2)
+        k_proj = k_proj.reshape(*k_proj.shape[:-1],self.num_heads,self.head_dim).swapaxes(-3,-2)
+        v_proj = v_proj.reshape(*v_proj.shape[:-1],self.num_heads,self.head_dim).swapaxes(-3,-2)
+
+        # Calculate per head attention (N,H,L,D)
+        sdpa = scaled_dot_product_attention_simple(q_proj,k_proj,v_proj,mask=mask)
+
+       # Merge heads back together (N, L, H*D) to get ready for output projection (E, H*D)
+        sdpa_swapped = sdpa.swapaxes(-3,-2)
+        sdpa = sdpa_swapped.reshape(*sdpa_swapped.shape[:-2],self.num_heads*self.head_dim)
+
+        # output should be (N, L, E) i.e transformed embedding for each token in the sequence
+        return linear(sdpa,self.wo)
 
 
 def causal_mask(L: int, S: int, dtype: mx.Dtype) -> mx.array:

@@ -2,7 +2,7 @@ import mlx.core as mx
 from .basics import softmax, linear
 
 """
-Q: (.., L, D) where L is seq_lengh and D is the head_dim
+Q: (.., L, D) where L is seq_length and D is the head_dim
 K: (.., L, D)
 V: (.., L, D)
 mask: (.., L, L)

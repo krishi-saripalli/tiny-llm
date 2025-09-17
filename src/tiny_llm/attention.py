@@ -94,7 +94,7 @@ class SimpleMultiHeadAttention:
 def causal_mask(L: int, S: int, dtype: mx.Dtype) -> mx.array:
     rows = mx.arange(L)[:, None]
     cols = mx.arange(S)[None, :]
-    max_attend = S - L + rows
+    max_attend = S - L + rows # TODO: draw this out on paper
     condition = cols <= max_attend
     return mx.where(
         condition,

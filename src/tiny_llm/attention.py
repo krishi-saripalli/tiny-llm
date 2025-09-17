@@ -87,9 +87,20 @@ class SimpleMultiHeadAttention:
         # output should be (N, L, E) i.e transformed embedding for each token in the sequence
         return linear(sdpa,self.wo)
 
-
+'''
+     L is the query sequence length
+     S is the key/value sequence length
+'''
 def causal_mask(L: int, S: int, dtype: mx.Dtype) -> mx.array:
-    pass
+    rows = mx.arange(L)[:, None]
+    cols = mx.arange(S)[None, :]
+    max_attend = S - L + rows
+    condition = cols <= max_attend
+    return mx.where(
+        condition,
+        mx.zeros((L, S), dtype=dtype),
+        mx.full((L, S), -mx.inf, dtype=dtype),
+    )
 
 '''
     N.. is zero or more dimensions for batches
@@ -125,8 +136,12 @@ def scaled_dot_product_attention_grouped(
     dot_prods *= scale
 
 
+
     if mask is not None:
-        dot_prods += mask.reshape(*mask.shape[:-3],H_kv, G,*mask.shape[-2:])
+        if mask == "causal":
+            dot_prods += causal_mask(*dot_prods.shape[-2:],query.dtype)
+        else:
+            dot_prods += mask.reshape(*mask.shape[:-3],H_kv, G,*mask.shape[-2:])
     
     probs = mx.softmax(dot_prods,axis=-1) # (..L, S) we're normalizing along the key dimension 
     attn = probs @ mx.expand_dims(value,axis=-3) # (.., H_kv, G  L, D)

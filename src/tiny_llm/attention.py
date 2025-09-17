@@ -91,7 +91,20 @@ class SimpleMultiHeadAttention:
 def causal_mask(L: int, S: int, dtype: mx.Dtype) -> mx.array:
     pass
 
+'''
+    N.. is zero or more dimensions for batches
+    H_q is the number of query heads
+    H is the number of key/value heads (H_q must be divisible by H)
+    L is the query sequence length
+    S is the key/value sequence length
+    D is the head dimension
 
+    query: N.. x H_q x L x D
+    key: N.. x H x S x D
+    value: N.. x H x S x D
+    mask: N.. x H_q x L x S
+    output: N.. x H_q x L x D
+'''
 def scaled_dot_product_attention_grouped(
     query: mx.array,
     key: mx.array,
@@ -99,7 +112,28 @@ def scaled_dot_product_attention_grouped(
     scale: float | None = None,
     mask: mx.array | str | None = None,
 ) -> mx.array:
-    pass
+    
+    H_q = query.shape[-3]
+    H_kv = key.shape[-3]
+    G = H_q // H_kv
+
+    query_grouped = query.reshape(*query.shape[:-3],H_kv, G,*query.shape[-2:]) # (N, ..., H_kv, G L, D)
+    key_grouped = mx.expand_dims(key,axis=-3).swapaxes(-2,-1) # (N,...,1, H_kv, D, S)
+    dot_prods = query_grouped @ key_grouped  # (.., L, S)
+    d_k = key.shape[-1]
+    scale = scale if scale is not None else 1.0 / mx.sqrt(d_k)
+    dot_prods *= scale
+
+
+    if mask is not None:
+        dot_prods += mask.reshape(*mask.shape[:-3],H_kv, G,*mask.shape[-2:])
+    
+    probs = mx.softmax(dot_prods,axis=-1) # (..L, S) we're normalizing along the key dimension 
+    attn = probs @ mx.expand_dims(value,axis=-3) # (.., H_kv, G  L, D)
+    attn = attn.reshape(*attn.shape[:-4],H_q,*attn.shape[-2:])
+    
+    return attn
+    
 
 
 def flash_attention(
